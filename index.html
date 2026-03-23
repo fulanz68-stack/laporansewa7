@@ -73,7 +73,7 @@
     }
     .panel-content { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 14px; flex: 1; }
 
-    /* DECORATIVE ICONS */
+    /* DECORATIVE ICONS - now using background images to prevent download */
     .deco-star-left {
       position: absolute;
       left: -38px;
@@ -84,14 +84,10 @@
       z-index: 15;
       pointer-events: none;
       filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-    }
-    .deco-star-left img, .deco-star-right img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      pointer-events: none;
-      user-select: none;
-      -webkit-user-drag: none;
+      background-image: url('bintang1.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
     }
     .deco-star-right {
       position: absolute;
@@ -102,6 +98,10 @@
       z-index: 15;
       pointer-events: none;
       filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+      background-image: url('bintang2.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
     }
     .candle-deco {
       position: absolute;
@@ -113,14 +113,10 @@
       pointer-events: none;
       filter: drop-shadow(0 0 4px #ffaa44) drop-shadow(0 0 8px #ff8833);
       animation: candleGlow 1.8s infinite alternate;
-    }
-    .candle-deco img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      pointer-events: none;
-      user-select: none;
-      -webkit-user-drag: none;
+      background-image: url('lilin.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
     }
     /* EFFECT PERCIKAN API PADA LILIN */
     .candle-deco::before, .candle-deco::after {
@@ -222,7 +218,7 @@
       display: block;
     }
 
-    /* EXAMPLE CARD */
+    /* EXAMPLE CARD - using background image for contoh.png */
     .example-card {
       background: rgba(10, 20, 30, 0.7);
       backdrop-filter: blur(8px);
@@ -242,16 +238,20 @@
       margin-bottom: 12px;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 2px 4px rgba(0,0,0,0.2);
     }
-    .example-img {
+    .example-img-bg {
       max-width: 160px;
+      height: auto;
+      aspect-ratio: 1 / 1;
       border-radius: 24px;
       border: 2px solid #ffd966;
       margin: 8px auto;
       display: block;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       pointer-events: none;
-      user-select: none;
-      -webkit-user-drag: none;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url('contoh.png');
     }
     .example-text {
       color: #cbd5e6;
@@ -259,7 +259,7 @@
       margin-top: 8px;
     }
 
-    /* CTA BUTTON - TOMBOL.PNG */
+    /* CTA BUTTON - TOMBOL.PNG now a background div, fully clickable and not downloadable */
     .btn-cta-img {
       width: 100%;
       max-width: 180px;
@@ -270,7 +270,13 @@
       filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
       pointer-events: auto;
       user-select: none;
-      -webkit-user-drag: none;
+      background-image: url('tombol.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      aspect-ratio: 180 / auto;
+      height: auto;
+      min-height: 60px;
     }
     .btn-cta-img:active { transform: scale(0.96); }
     .btn-cta-img:hover { filter: drop-shadow(0 0 12px #ffd966); }
@@ -762,9 +768,9 @@
 
   <!-- MAIN PANEL -->
   <div class="phone-panel" id="mainPanel">
-    <div class="deco-star-left"><img src="bintang1.png" alt="Bintang" draggable="false" oncontextmenu="return false" style="pointer-events: none; user-select: none;" onerror="this.style.display='none'"></div>
-    <div class="deco-star-right"><img src="bintang2.png" alt="Bintang" draggable="false" oncontextmenu="return false" style="pointer-events: none; user-select: none;" onerror="this.style.display='none'"></div>
-    <div class="candle-deco"><img src="lilin.png" alt="Lilin" draggable="false" oncontextmenu="return false" style="pointer-events: none; user-select: none;" onerror="this.style.display='none'"></div>
+    <div class="deco-star-left"></div>
+    <div class="deco-star-right"></div>
+    <div class="candle-deco"></div>
 
     <div class="panel-content">
       <div class="pirate-header">
@@ -779,13 +785,13 @@
 
       <div class="example-card">
         <div class="example-badge"><i class="fas fa-scroll"></i> CONTOH VALID</div>
-        <img src="contoh.png" alt="Contoh" class="example-img" draggable="false" oncontextmenu="return false" style="pointer-events: none; user-select: none;" onerror="this.style.display='none'; this.parentElement.innerHTML+='<p style=\'color:#ffd966;\'>📸 Screenshot FULL CHAT & JELAS</p>'">
+        <div class="example-img-bg" onerror="this.style.display='none'; this.parentElement.innerHTML+='<p style=\'color:#ffd966;\'>📸 Screenshot FULL CHAT & JELAS</p>'"></div>
         <div class="example-text">📸 Pastikan screenshot FULL CHAT & JELAS</div>
       </div>
 
-      <!-- TOMBOL LAPOR SEKARANG (hanya bisa diklik, tidak bisa di-download) -->
+      <!-- TOMBOL LAPOR SEKARANG (background div, clickable, not downloadable) -->
       <div style="text-align: center; margin: 8px 0;">
-        <img src="tombol.png" alt="Lapor Sekarang" class="btn-cta-img" onclick="openFormModal()" draggable="false" oncontextmenu="return false" style="pointer-events: auto; user-select: none;" onerror="this.style.display='none'; this.parentElement.innerHTML+='<button class=\'btn-cta\' onclick=\'openFormModal()\' style=\'background:linear-gradient(135deg,#ffdd88,#d4a017); border:none; color:#1e2a3a; font-weight:800; padding:16px; border-radius:60px; width:100%;\'>LAPOR SEKARANG</button>'">
+        <div class="btn-cta-img" onclick="openFormModal()" oncontextmenu="return false" draggable="false"></div>
       </div>
     </div>
   </div>
